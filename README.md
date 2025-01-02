@@ -1,4 +1,3 @@
-
 # TaskMstr
 
 ## Introduction
@@ -57,3 +56,7 @@ taskmstr delete 1
 ## Prerequisites
 
 Rust and Cargo must be installed on your system. Visit [https://rust-lang.org/tools/install](https://rust-lang.org/tools/install) to install Rust.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
