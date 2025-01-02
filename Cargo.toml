@@ -3,7 +3,12 @@ name = "taskmstr"
 version = "0.1.1"
 edition = "2021"
 authors = ["Vincent Obbeng <obbengvincent@gmail.com>"]
-description = "A simple task manager CLI application."
+description = "A simple task manager CLI application"
+license = "MIT"
+repository = "https://github.com/Vi-obb/task_master"
+keywords = ["cli", "task-manager", "productivity"]
+categories = ["command-line-utilities"]
+readme = "README.md"
 
 [dependencies]
 dirs = "5.0"
