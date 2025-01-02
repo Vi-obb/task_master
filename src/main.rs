@@ -1,11 +1,19 @@
 mod task;
 
 use std::env;
+use dirs::home_dir;
+use std::path::PathBuf;
 
-const TASKS_FILE: &str = "tasks.txt";
+fn get_tasks_file() -> PathBuf {
+    let mut config_dir = home_dir().expect("Failed to find home directory");
+    config_dir.push(".taskmstr");
+    config_dir.push("tasks.txt");
+    config_dir
+}
 
 fn main() {
-    let mut tasks = match task::load_tasks(TASKS_FILE) {
+    let tasks_file = get_tasks_file();
+    let mut tasks = match task::load_tasks(&tasks_file) {
         Ok(t) => t,
         Err(e) => {
             eprintln!("Error loading tasks: {}", e);
@@ -16,7 +24,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.len() < 2 {
-        println!("Usage: task_master [add|delete|list] [args...]");
+        println!("Usage: taskmstr [add|delete|list] [args...]");
         return;
     }
 
@@ -25,7 +33,7 @@ fn main() {
     match action.as_str() {
         "add" => {
             if args.len() < 3 {
-                println!("Usage: task_master add [description]");
+                println!("Usage: taskmstr add [description]");
                 return;
             }
             let description = &args[2];
@@ -34,7 +42,7 @@ fn main() {
         }
         "delete" => {
             if args.len() < 3 {
-                println!("Usage: task_master delete [index]");
+                println!("Usage: taskmstr delete [index]");
                 return;
             }
             let index = match args[2].parse::<usize>() {
@@ -58,12 +66,12 @@ fn main() {
         }
         _ => {
             println!("Unknown command: {}", action);
-            println!("Usage: task_master [add|delete|list] [args...]");
+            println!("Usage: taskmstr [add|delete|list] [args...]");
             return;
         }
     }
 
-    if let Err(e) = task::save_tasks(TASKS_FILE, &tasks) {
+    if let Err(e) = task::save_tasks(&tasks_file, &tasks) {
         eprintln!("Error saving tasks: {}", e);
     } else {
         println!("Tasks saved successfully.");

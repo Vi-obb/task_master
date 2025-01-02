@@ -1,14 +1,17 @@
-use std::fs::File;
+use std::fs::{self, File};
 use std::io::{BufReader, BufWriter, BufRead, Write};
-use std::path::Path;
+use std::path::PathBuf;
 use std::io;
 
 pub struct Task {
     pub description: String,
 }
 
-pub fn load_tasks(file_path: &str) -> Result<Vec<Task>, io::Error> {
-    if !Path::new(file_path).exists() {
+pub fn load_tasks(file_path: &PathBuf) -> Result<Vec<Task>, io::Error> {
+    if !file_path.exists() {
+        if let Some(parent) = file_path.parent() {
+            fs::create_dir_all(parent)?;
+        }
         return Ok(Vec::new());
     }
 
@@ -26,7 +29,10 @@ pub fn load_tasks(file_path: &str) -> Result<Vec<Task>, io::Error> {
     Ok(tasks)
 }
 
-pub fn save_tasks(file_path: &str, tasks: &[Task]) -> Result<(), io::Error> {
+pub fn save_tasks(file_path: &PathBuf, tasks: &[Task]) -> Result<(), io::Error> {
+    if let Some(parent) = file_path.parent() {
+        fs::create_dir_all(parent)?;
+    }
     let file = File::create(file_path)?;
     let mut writer = BufWriter::new(file);
 

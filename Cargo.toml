@@ -1,6 +1,9 @@
 [package]
-name = "task_master"
-version = "0.1.0"
+name = "taskmstr"
+version = "0.1.1"
 edition = "2021"
+authors = ["Vincent Obbeng <obbengvincent@gmail.com>"]
+description = "A simple task manager CLI application."
 
 [dependencies]
+dirs = "5.0"
