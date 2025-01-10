@@ -1,6 +1,6 @@
 [package]
 name = "taskmstr"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Vincent Obbeng <obbengvincent@gmail.com>"]
 description = "A simple task manager CLI application"
@@ -12,3 +12,5 @@ readme = "README.md"
 
 [dependencies]
 dirs = "5.0"
+clap = { version = "4.4", features = ["derive"] }
+rusqlite = "0.29"

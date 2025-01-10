@@ -2,13 +2,14 @@
 
 ## Introduction
 
-"taskmstr" is a simple and efficient command-line task manager I built to practice writing Rust. It helps to  manage tasks directly from the terminal. Built with Rust for performance and reliability, it offers a straightforward interface to add, list, and delete tasks. New Rust learners can use this project to understand the basics of Rust programming, including error handling, file I/O, and command-line argument parsing.
+"taskmstr" is a simple and efficient command-line task manager I built to practice writing Rust. It helps to  manage tasks directly from the terminal. Built with Rust for performance and reliability, it offers a straightforward interface to add, edit, list, and delete tasks. New Rust learners can use this project to understand the basics of Rust programming, including error handling, file I/O, and command-line argument parsing.
 
 ## Features
 
 - Add tasks
 - List all tasks with indices
 - Delete tasks by index
+- Edit tasks by index
 - Persistent storage of tasks across sessions
 
 ## Installation
@@ -51,6 +52,12 @@ taskmstr list
 
 ```bash
 taskmstr delete 1
+```
+
+### Editing a task
+
+```bash
+taskmstr edit 1 "learn advanced rust"
 ```
 
 ## Prerequisites
